@@ -86,4 +86,6 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-animate();
+window.addEventListener("load", () =>{
+    animate();
+});

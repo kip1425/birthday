@@ -1,0 +1,124 @@
+.balloon {
+    position: relative;
+    width: 8%;
+    height: 20%;
+    border-radius: 50%;
+    position: fixed;
+    bottom: -120px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    animation-name: float-to-top;
+    animation-timing-function: linear;
+}
+
+.balloon-string {
+    position: absolute;
+    bottom: -120px;
+    width: 1.5px;
+    height: 120px;
+    background: linear-gradient(to bottom, 
+        #aaa 0%, 
+        #ccc 20%, 
+        #eee 40%, 
+        #ccc 60%, 
+        #aaa 80%, 
+        #888 100%);
+    box-shadow: 0 0 2px rgba(255,255,255,0.5);
+    transform-origin: top center;
+    
+    /* Natural sway with random variation */
+    animation: 
+        sway 2.5s ease-in-out infinite alternate,
+        string-twitch 0.3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(calc(8deg * var(--curve-direction, 1)));
+    }
+}
+
+@keyframes string-twitch {
+    0%, 100% {
+        height: 120px;
+    }
+    50% {
+        height: 118px;
+    }
+}
+
+.header {
+    padding: 20px;
+    background-color: #ff66b3;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: rgb(252, 204, 212);
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+.balloon:hover {
+    transform: scale(1.1);
+}
+
+@keyframes float-to-top {
+    0% {
+        transform: translateY(80vh);
+    }
+    100% {
+        bottom: 83vh; 
+    }
+}
+
+@keyframes float-offscreen {
+    to { 
+        bottom: calc(100vh + 120px); /* Ensure fully offscreen */
+    }
+}
+
+#message-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 100;
+    max-width: 80%;
+    text-align: center;
+    display: none;
+}
+
+#message-content {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#close-message {
+    background-color: #ff66b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#close-message:hover {
+    background-color: #ff3385;
+}

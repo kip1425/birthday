@@ -36,7 +36,7 @@ function showButton() {
     button.size;
     button.textContent = "click here for balloons";
     button.style.position = "absolute";
-    button.style.top = "85%";
+    button.style.top = "90%";
     button.style.left = "50%";
     button.style.transform = "translate(-50%, -50%)";
     button.style.padding = "25px 25px";

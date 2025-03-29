@@ -5,12 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>balloons!</title>
   <style>
-    
-    
+    button.nextpg {
+      position: absolute;
+      top: 90%;
+      left: 5%;
+      transform: translate(-50%, -50%);
+      padding: 25px 25px;
+      font-size: 1.2rem;
+      background-color: white;
+      color: black;
+      border: solid;
+      border-color: black;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button.nextpg:hover {
+      background-color: grey;
+      color: black;
+      border-color: black;
+    }
   </style>
   <link rel="stylesheet" href="messages.css">
 </head>
 <body>
+  <button class="nextpg" onclick="window.location.href='birthday.html'">back</button>
     <div id ="balloon-container"></div>
     <div id="message-display" class="hidden">
       <div id="message-content"></div>

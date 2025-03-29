@@ -67,7 +67,6 @@ function createBalloon() {
     if (balloonCount >= MAX) return;
 
     const balloon = document.createElement('div');
-    balloonCount++;
     balloon.className = 'balloon';
 
     // Position and animation
@@ -107,6 +106,8 @@ function createBalloon() {
     } else if (balloonCount < MAX) {
         balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
         balloon.style.animationName = 'float-offscreen';
+        balloon.dataset.message = "";
+        balloonCount++;
         balloon.addEventListener('animationend', () => {
             balloon.remove();
             string.remove();

@@ -28,7 +28,10 @@ function onCollision() {
     imageIdx = (imageIdx + 1) % imageUrls.length;
     image.src = imageUrls[imageIdx];
 
-    showButton();
+    if (buttonCreated == false) {
+        showButton();
+        buttonCreated = true;
+    }
 }
 
 function showButton() {
@@ -87,11 +90,16 @@ function animate() {
 }
 
 window.addEventListener("load", () =>{
-    image.onload = function() {
-        const imageWidth = image.clientWidth;
-        const imageHeight = image.clientHeight;
-        animate();
-    };
-    // Trigger load in case it's already cached
     if (image.complete) image.onload();
 });
+
+let animationRunning = false; // Flag to track if animate() is already running
+
+image.onload = function() {
+    imageWidth = image.clientWidth;
+    imageHeight = image.clientHeight;
+    if (!animationRunning) { // Only start if not already running
+        animationRunning = true;
+        animate();
+    }
+};

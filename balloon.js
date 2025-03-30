@@ -12,7 +12,7 @@ const messageFiles = [
 
 const balloonImages = [
     "images/benedict.jpg",
-    "messages/clara.jpg",
+    "images/clara.jpg",
     "images/darwish.png",
     "images/dhaaniya.png",
     "images/john.jpg",

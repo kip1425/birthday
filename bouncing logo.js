@@ -1,10 +1,10 @@
 let image = document.getElementById("bouncingImage");
-let x = 1;
-let y = 1;
+let x = 5;
+let y = 7;
 let xSpeed = 2.2;
 let ySpeed = 1;
-const imageWidth = image.clientWidth;
-const imageHeight = image.clientHeight;
+let imageWidth = image.clientWidth;
+let imageHeight = image.clientHeight;
 const imageUrls = [
     "images/ariel.png",
     "images/benedict.jpg",
@@ -22,9 +22,25 @@ const imageUrls = [
     "images/zuming.png"
 ];
 
+let animationId = null; // Track animation frame
+let isFirstLoad = true; // Track initial load
+
+// Set up image loading handler
+image.onload = function() {
+    imageWidth = image.clientWidth;
+    imageHeight = image.clientHeight;
+    if (isFirstLoad) {
+        isFirstLoad = false;
+        animate();
+    }
+};
+
 let imageIdx = -1;
 let buttonCreated = false;
+let collisionCooldown = false;
+
 function onCollision() {
+    console.log("Collision detected, changing image");
     imageIdx = (imageIdx + 1) % imageUrls.length;
     image.src = imageUrls[imageIdx];
 
@@ -67,17 +83,27 @@ function showButton() {
 }
 
 function animate() {
+    if (animationId) {
+        cancelAnimationFrame(animationId); // Cancel any existing animation frame
+    }
+
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
 
-    if (x >= screenWidth - imageWidth || x <= 0) {
-        xSpeed = -xSpeed;
-        onCollision();
-    }
+    if (!collisionCooldown) {
+        if (x + xSpeed >= screenWidth - imageWidth || x + xSpeed <= 0) {
+            xSpeed = -xSpeed;
+            onCollision();
+            collisionCooldown = true;
+            setTimeout(() => (collisionCooldown = false), 300); // Reset cooldown after 100ms
+        }
 
-    if (y >= screenHeight - imageHeight || y <= 0) {
-        ySpeed = -ySpeed;
-        onCollision();
+        if (y + ySpeed >= screenHeight - imageHeight || y + ySpeed <= 0) {
+            ySpeed = -ySpeed;
+            onCollision();
+            collisionCooldown = true;
+            setTimeout(() => (collisionCooldown = false), 300); // Reset cooldown after 100ms
+        }
     }
     
     x += xSpeed;
@@ -85,21 +111,17 @@ function animate() {
 
     image.style.left = `${x}px`;
     image.style.top = `${y}px`;
+    console.log(`x: ${x}, y: ${y}`);
 
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
 }
 
-window.addEventListener("load", () =>{
-    if (image.complete) image.onload();
+window.addEventListener("beforeunload", () => {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+    }
 });
 
-let animationRunning = false; // Flag to track if animate() is already running
+animate();
 
-image.onload = function() {
-    imageWidth = image.clientWidth;
-    imageHeight = image.clientHeight;
-    if (!animationRunning) { // Only start if not already running
-        animationRunning = true;
-        animate();
-    }
-};
+

@@ -87,5 +87,11 @@ function animate() {
 }
 
 window.addEventListener("load", () =>{
-    animate();
+    image.onload = function() {
+        const imageWidth = image.clientWidth;
+        const imageHeight = image.clientHeight;
+        animate();
+    };
+    // Trigger load in case it's already cached
+    if (image.complete) image.onload();
 });

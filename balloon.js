@@ -1,8 +1,10 @@
 const messageFiles = [
     "messages/benedict.txt",
+    "messages/clara.txt",
     "messages/darwish.txt",
     "messages/dhaaniya.txt",
     "messages/john.txt",
+    "messages/jolin.txt",
     "messages/justin.txt",
     "messages/zhenghao.txt",
     "messages/zuming.txt"
@@ -10,9 +12,11 @@ const messageFiles = [
 
 const balloonImages = [
     "images/benedict.jpg",
+    "messages/clara.jpg",
     "images/darwish.png",
     "images/dhaaniya.png",
     "images/john.jpg",
+    "images/jolin.png",
     "images/justin.jpg",
     "images/zhenghao.png",
     "images/zuming.png"
@@ -60,7 +64,7 @@ const closeButton = document.getElementById('close-message');
 
 let balloonCount = 0;
 let imgBalloonCount = 0;
-const MAX_BALLOONS = 7;
+const MAX_BALLOONS = 9;
 const MAX = 20;
 
 function createBalloon() {

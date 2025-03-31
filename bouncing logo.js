@@ -15,6 +15,7 @@ const imageUrls = [
     "images/john.jpg",
     "images/jolin.png",
     "images/justin.jpg",
+    "images/lerxen.jpg",
     "images/michelle.png",
     "images/velicia.png",
     "images/xinyi.jpg",

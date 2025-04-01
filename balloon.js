@@ -11,6 +11,7 @@ const messageFiles = [
     "messages/lerxen.txt",
     "messages/michelle.txt",
     "messages/velicia.txt",
+    "messages/xinyi.txt",
     "messages/zhenghao.txt",
     "messages/zuming.txt"
 ];
@@ -28,6 +29,7 @@ const balloonImages = [
     "images/lerxen.jpg",
     "images/michelle.png",
     "images/velicia.png",
+    "images/xinyi.jpg",
     "images/zhenghao.png",
     "images/zuming.png"
 ];
@@ -74,7 +76,7 @@ const closeButton = document.getElementById('close-message');
 
 let balloonCount = 0;
 let imgBalloonCount = 0;
-const MAX_BALLOONS = 14;
+const MAX_BALLOONS = 15;
 const MAX = 20;
 
 function createBalloon() {
